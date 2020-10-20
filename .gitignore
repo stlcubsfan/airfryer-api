@@ -1,0 +1,4 @@
+config/config.env
+log/access.log
+node_modules
+
