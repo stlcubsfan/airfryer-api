@@ -3,7 +3,8 @@ const advancedResults = require('../middleware/advancedResults')
 
 const {
   getAllFoods,
-  createFood
+  createFood,
+  updateFood
 } = require('../controllers/foods')
 
 const router = express.Router()
@@ -12,4 +13,5 @@ const Food = require('../models/food')
 router.route('/').get(advancedResults(Food), getAllFoods)
   .post(createFood)
 
+router.route('/:id').put(updateFood)
 module.exports = router
