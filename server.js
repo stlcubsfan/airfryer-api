@@ -33,15 +33,20 @@ app.use(helmet());
 app.use(xss());
 app.use(hpp());
 app.use(cors());
+app.options('*', cors())
+
 const limiter = rateLimit({
   windowMs: 10 * 60 * 1000, // 10 minutes
   max: 100,
 });
 app.use(limiter);
 
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Mount routes
+const foodRoutes = require('./routes/foods')
+app.use('/api/v1/foods', foodRoutes)
 
 // Logging
 const rfs = require('rotating-file-stream');
